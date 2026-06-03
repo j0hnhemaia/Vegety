@@ -1,6 +1,5 @@
 import "server-only";
 import type { MenuItem } from "./types";
-import { MOCK_MENU } from "./mock-menu";
 
 // ---------------------------------------------------------------------------
 // Server-only menu fetch. Imports "server-only" so this module can NEVER be
@@ -11,7 +10,9 @@ import { MOCK_MENU } from "./mock-menu";
 //   MENU_WEBHOOK_KEY  – the shared secret (matches Script Property WEBHOOK_KEY)
 //
 // The key is sent in the POST body (not the URL) over HTTPS, so it never
-// appears in access logs. If env is missing, we fall back to mock data.
+// appears in access logs. The menu reflects the sheet only — if env is missing
+// or the sheet is empty, we return an empty list (the page shows its empty
+// state) rather than any placeholder data.
 // ---------------------------------------------------------------------------
 
 const WEBHOOK_URL = process.env.MENU_WEBHOOK_URL;
@@ -37,7 +38,7 @@ function sanitize(items: unknown): MenuItem[] {
 }
 
 export async function fetchMenu(): Promise<MenuItem[]> {
-  if (!WEBHOOK_URL || !WEBHOOK_KEY) return MOCK_MENU;
+  if (!WEBHOOK_URL || !WEBHOOK_KEY) return [];
 
   try {
     const res = await fetch(WEBHOOK_URL, {
@@ -52,10 +53,9 @@ export async function fetchMenu(): Promise<MenuItem[]> {
     const data = (await res.json()) as WebhookResponse;
     if (!data.ok) throw new Error(data.error || "webhook error");
 
-    const items = sanitize(data.items);
-    return items.length ? items : MOCK_MENU;
+    return sanitize(data.items);
   } catch (err) {
-    console.error("fetchMenu failed, using mock data:", err);
-    return MOCK_MENU;
+    console.error("fetchMenu failed:", err);
+    return [];
   }
 }
