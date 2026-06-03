@@ -16,10 +16,10 @@ export default function MenuCard({ item }: { item: MenuItem }) {
         ) : (
           <div className="h-full w-full bg-brand-100" />
         )}
-        <span className="absolute left-0 top-0 rounded-br-2xl rounded-tl-2xl bg-white px-3 py-1.5 text-xs font-semibold uppercase tracking-wide text-brand-500 shadow-sm">
+        <span className="absolute left-0 top-0 rounded-br-2xl bg-white px-3 py-1.5 text-xs font-semibold uppercase tracking-wide text-brand-500 shadow-sm">
           {item.category}
         </span>
-        <span className="absolute bottom-0 right-0 rounded-br-2xl rounded-tl-2xl bg-white px-3 py-1.5 font-display text-sm font-bold text-brand-500 shadow-sm">
+        <span className="absolute bottom-0 right-0 rounded-tl-2xl bg-white px-3 py-1.5 font-display text-sm font-bold text-brand-500 shadow-sm">
           £{item.price.toFixed(2)}
         </span>
       </div>
