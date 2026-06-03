@@ -31,14 +31,7 @@ var HEADERS = ["name", "category", "price", "image", "description"];
 var CACHE_KEY = "menu_json";
 var CACHE_TTL_SECONDS = 30;
 
-/* ----------------------------- Custom menu ----------------------------- */
-
-function onOpen() {
-  SpreadsheetApp.getUi()
-    .createMenu("🌿 Vegety")
-    .addItem("Publish menu (refresh site)", "publishMenu")
-    .addToUi();
-}
+/* --------------------------- Sheet helpers ----------------------------- */
 
 /** Creates the Menu tab if needed and writes the header row. */
 function setupHeaders() {
