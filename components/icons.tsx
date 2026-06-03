@@ -21,18 +21,6 @@ export const Search = ({ className = "h-5 w-5" }: P) => (
   </svg>
 );
 
-export const Star = ({ className = "h-4 w-4" }: P) => (
-  <svg className={className} viewBox="0 0 24 24" fill="currentColor" stroke="none">
-    <path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
-  </svg>
-);
-
-export const Check = ({ className = "h-4 w-4" }: P) => (
-  <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={3} strokeLinecap="round" strokeLinejoin="round">
-    <path d="M20 6 9 17l-5-5" />
-  </svg>
-);
-
 export const Arrow = ({ className = "h-4 w-4" }: P) => (
   <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
     <path d="M5 12h14M13 6l6 6-6 6" />
