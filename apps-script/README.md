@@ -41,9 +41,40 @@ Tab named `Menu`, row 1 headers in this exact order:
 Until these are set, the site automatically falls back to mock data.
 
 ## Updating the menu (no redeploy)
-The web app reads the sheet **live** on every request (cached 30s), so just edit
-rows. To push edits to the site **instantly**, click **🌿 Vegety → Publish menu**
-(this clears the cache). You only redeploy if you change `Code.gs` itself.
+The web app reads the sheet **live** on every request, so just edit rows — you
+only redeploy if you change `Code.gs` itself.
+
+The Next.js site caches the menu (ISR) for speed. To push edits to the site
+**instantly** instead of waiting for the cache to expire, set up the on-demand
+revalidation trigger below.
+
+### Instant updates (on-demand revalidation)
+1. **Project Settings (gear) → Script properties** → add two properties:
+   ```
+   REVALIDATE_URL    = https://<your-site>/api/revalidate
+   REVALIDATE_SECRET = <a long random string>
+   ```
+2. In the Next.js project, set the SAME secret as `REVALIDATE_SECRET` in
+   `.env.local` **and** in **Vercel → Settings → Environment Variables**, then
+   redeploy the site.
+3. **Triggers (clock icon) → Add Trigger**:
+   - Function: **`onSheetChange`**
+   - Event source: **From spreadsheet**
+   - Event type: **On change**
+   - **Save** and authorize when prompted (an *installable* trigger is required
+     — simple triggers can't make external requests).
+
+Now any sheet change pings `/api/revalidate`, which purges the site's `menu`
+cache so the edit appears immediately. If a ping is ever missed, the site's
+60-second ISR fallback still picks the change up within a minute.
+
+Test the endpoint directly:
+```bash
+curl -s -X POST "$REVALIDATE_URL" \
+  -H "Content-Type: application/json" \
+  -d "{\"secret\":\"$REVALIDATE_SECRET\"}"
+# → {"ok":true,"revalidated":true,"now":...}
+```
 
 ## Test from a terminal
 ```bash

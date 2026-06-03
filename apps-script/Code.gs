@@ -110,3 +110,41 @@ function json_(obj) {
     ContentService.MimeType.JSON
   );
 }
+
+/* ---------------------- On-demand revalidation ------------------------- */
+/**
+ * Pings the Next.js site to purge its cache the moment the sheet changes, so
+ * menu edits appear IMMEDIATELY (no waiting for the site's time-based fallback).
+ *
+ * SETUP (one time):
+ *  1. Project Settings (gear) → Script properties → add:
+ *       REVALIDATE_URL    = https://<your-site>/api/revalidate
+ *       REVALIDATE_SECRET = <a long random string>   (same value in Vercel)
+ *  2. Triggers (clock icon) → Add Trigger:
+ *       Choose function:  onSheetChange
+ *       Event source:     From spreadsheet
+ *       Event type:       On change
+ *       Save → authorize when prompted (an INSTALLABLE trigger is required;
+ *       simple triggers cannot make external requests).
+ *
+ * "On change" covers cell edits, row/column inserts and deletes, so any menu
+ * change triggers a revalidation. Best-effort: if the ping fails, the site's
+ * `revalidate: 60` fallback still picks the edit up within a minute.
+ */
+function onSheetChange(e) {
+  try {
+    var props = PropertiesService.getScriptProperties();
+    var url = props.getProperty("REVALIDATE_URL");
+    var secret = props.getProperty("REVALIDATE_SECRET");
+    if (!url || !secret) return;
+
+    UrlFetchApp.fetch(url, {
+      method: "post",
+      contentType: "application/json",
+      payload: JSON.stringify({ secret: secret }),
+      muteHttpExceptions: true,
+    });
+  } catch (err) {
+    // Best-effort only — the site's time-based ISR fallback self-heals.
+  }
+}
