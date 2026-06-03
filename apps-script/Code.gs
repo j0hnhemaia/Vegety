@@ -37,9 +37,6 @@ function onOpen() {
   SpreadsheetApp.getUi()
     .createMenu("🌿 Vegety")
     .addItem("Publish menu (refresh site)", "publishMenu")
-    .addItem("Set up headers", "setupHeaders")
-    .addSeparator()
-    .addItem("Generate API key", "setupKey")
     .addToUi();
 }
 
