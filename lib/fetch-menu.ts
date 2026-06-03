@@ -9,10 +9,13 @@ import type { MenuItem } from "./types";
 //   MENU_WEBHOOK_URL  – the Apps Script /exec web app URL
 //   MENU_WEBHOOK_KEY  – the shared secret (matches Script Property WEBHOOK_KEY)
 //
-// The key is sent in the POST body (not the URL) over HTTPS, so it never
-// appears in access logs. The menu reflects the sheet only — if env is missing
-// or the sheet is empty, we return an empty list (the page shows its empty
-// state) rather than any placeholder data.
+// The key is sent as a query param over HTTPS (the whole URL is encrypted in
+// transit). Apps Script /exec reliably handles GET; its POST endpoint 405s for
+// server-to-server requests, so we use GET. The request runs server-side on
+// Vercel, so the key never reaches the browser.
+//
+// The menu reflects the sheet only — if env is missing or the sheet is empty,
+// we return an empty list (the page shows its empty state), never placeholder data.
 // ---------------------------------------------------------------------------
 
 const WEBHOOK_URL = process.env.MENU_WEBHOOK_URL;
@@ -41,10 +44,8 @@ export async function fetchMenu(): Promise<MenuItem[]> {
   if (!WEBHOOK_URL || !WEBHOOK_KEY) return [];
 
   try {
-    const res = await fetch(WEBHOOK_URL, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ key: WEBHOOK_KEY }),
+    const url = `${WEBHOOK_URL}?key=${encodeURIComponent(WEBHOOK_KEY)}`;
+    const res = await fetch(url, {
       cache: "no-store",
       redirect: "follow", // Apps Script 302-redirects to googleusercontent
     });
