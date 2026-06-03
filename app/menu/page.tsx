@@ -10,8 +10,9 @@ export const metadata: Metadata = {
   description: "Browse our full menu of fresh salads, bowls, breakfasts and drinks. Search and filter by category.",
 };
 
-// Always render on the server per request → menu edits show up live, no redeploy.
-export const dynamic = "force-dynamic";
+// ISR: served static (instant navigation), regenerated in the background every
+// 60s so menu edits show up without a redeploy and without per-click fetching.
+export const revalidate = 60;
 
 export default async function MenuPage() {
   const menu = await fetchMenu();

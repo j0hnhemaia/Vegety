@@ -48,7 +48,8 @@ export async function fetchMenu(): Promise<MenuItem[]> {
     const u = new URL(WEBHOOK_URL);
     u.searchParams.set("key", WEBHOOK_KEY);
     const res = await fetch(u.toString(), {
-      cache: "no-store",
+      // ISR: cache the response; pages revalidate in the background (see page revalidate).
+      next: { revalidate: 60 },
       redirect: "follow", // Apps Script 302-redirects to googleusercontent
     });
     if (!res.ok) throw new Error(`webhook ${res.status}`);
