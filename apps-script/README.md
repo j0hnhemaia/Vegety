@@ -21,20 +21,29 @@ Tab named `Menu`, row 1 headers in this exact order:
 (No `id` or `rating` columns — `id` is generated automatically from the row number.)
 
 ## Setup
-1. Google Sheet → **Extensions → Apps Script**. Paste `Code.gs`.
-2. Run **`setupKey`** once. Authorise it. Open **Executions/Logs** and copy the key.
-3. **Deploy → New deployment → Web app**
+1. Google Sheet → **Extensions → Apps Script**. Paste `Code.gs`. **Save**.
+2. **Reload the spreadsheet** — a **🌿 Vegety** menu appears in the menu bar
+   (next to Extensions / Help).
+3. **🌿 Vegety → Set up headers** — creates the `Menu` tab + bold frozen header row.
+   (Or import `menu-seed.csv` for the 12 demo rows.)
+4. **🌿 Vegety → Generate API key** — copy the key from the popup.
+5. **Deploy → New deployment → Web app**
    - Execute as: **Me**
    - Who has access: **Anyone** (access is gated by the key, not Google login)
-4. Copy the Web App **`/exec` URL**.
-5. In the Next.js project, copy `.env.example` → `.env.local`:
+6. Copy the Web App **`/exec` URL**.
+7. In the Next.js project, copy `.env.example` → `.env.local`:
    ```
    MENU_WEBHOOK_URL=<the /exec URL>
-   MENU_WEBHOOK_KEY=<the key from step 2>
+   MENU_WEBHOOK_KEY=<the key from step 4>
    ```
-6. Add the same two vars in **Vercel → Project → Settings → Environment Variables**.
+8. Add the same two vars in **Vercel → Project → Settings → Environment Variables**.
 
 Until these are set, the site automatically falls back to mock data.
+
+## Updating the menu (no redeploy)
+The web app reads the sheet **live** on every request (cached 30s), so just edit
+rows. To push edits to the site **instantly**, click **🌿 Vegety → Publish menu**
+(this clears the cache). You only redeploy if you change `Code.gs` itself.
 
 ## Test from a terminal
 ```bash
