@@ -10,11 +10,11 @@ export default function Splash() {
   useEffect(() => {
     // lock scroll while the splash is up
     document.body.style.overflow = "hidden";
-    const fade = setTimeout(() => setHidden(true), 1000); // play ~1s
+    const fade = setTimeout(() => setHidden(true), 2400); // play ~2.4s
     const remove = setTimeout(() => {
       setDone(true);
       document.body.style.overflow = "";
-    }, 1500); // 1s + 0.5s fade
+    }, 2900); // 2.4s + 0.5s fade
     return () => {
       clearTimeout(fade);
       clearTimeout(remove);
