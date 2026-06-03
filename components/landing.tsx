@@ -148,7 +148,7 @@ export function PopularMenu({ items }: { items: MenuItem[] }) {
             >
               <div className="relative aspect-[5/4] overflow-hidden rounded-2xl">
                 <Image src={item.image} alt={item.name} fill sizes="(max-width:768px) 100vw, 33vw" className="object-cover" />
-                <span className="absolute left-0 top-0 rounded-br-2xl bg-white px-3 py-1.5 text-xs font-semibold uppercase tracking-wide text-brand-500 shadow-sm">
+                <span className="absolute left-3 top-3 rounded-full bg-white px-3 py-1 text-xs font-semibold uppercase tracking-wide text-brand-500 shadow-sm">
                   {item.category}
                 </span>
               </div>
