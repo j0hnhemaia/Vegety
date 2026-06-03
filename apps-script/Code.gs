@@ -5,8 +5,8 @@
  *
  * IMPORTANT: you do NOT redeploy when you change the menu data. The web app
  * reads the sheet LIVE on every request (cached 30s). Editing rows is enough.
- * Use the "🌿 Vegety → Publish menu" button to clear the cache for an instant
- * refresh. Redeploy is only needed if you change THIS code.
+ * Use "🌿 Vegety → Publish menu" to clear the cache for an instant refresh.
+ * Redeploy is only needed if you change THIS code.
  *
  * SECURITY MODEL
  *  - Secret lives in Script Properties (WEBHOOK_KEY), never in this file/repo.
@@ -17,17 +17,18 @@
  *
  * SETUP
  *  1. Sheet → Extensions → Apps Script → paste this file → Save.
- *  2. Reload the spreadsheet. A "🌿 Vegety" menu appears next to Extensions.
- *  3. 🌿 Vegety → Set up headers      (creates the Menu tab + header row)
- *  4. 🌿 Vegety → Generate API key    (copy the key into .env / Vercel)
- *  5. Deploy → New deployment → Web app
+ *  2. Sheet tab named "Menu", row 1 headers: name | category | price | image | description
+ *     (or import apps-script/menu-seed.csv).
+ *  3. Set the secret: Project Settings (gear) → Script properties →
+ *     add property  WEBHOOK_KEY = <a long random string>. Use the SAME value as
+ *     MENU_WEBHOOK_KEY in your .env / Vercel.
+ *  4. Deploy → New deployment → Web app
  *       - Execute as: Me
  *       - Who has access: Anyone   (access is gated by the key, not Google login)
  *     Copy the /exec URL → MENU_WEBHOOK_URL.
  */
 
 var SHEET_NAME = "Menu";
-var HEADERS = ["name", "category", "price", "image", "description"];
 var CACHE_KEY = "menu_json";
 var CACHE_TTL_SECONDS = 30;
 
@@ -38,21 +39,6 @@ function onOpen() {
     .createMenu("🌿 Vegety")
     .addItem("Publish menu", "publishMenu")
     .addToUi();
-}
-
-/* --------------------------- Sheet helpers ----------------------------- */
-
-/** Creates the Menu tab if needed and writes the header row. */
-function setupHeaders() {
-  var ss = SpreadsheetApp.getActiveSpreadsheet();
-  var sheet = ss.getSheetByName(SHEET_NAME) || ss.insertSheet(SHEET_NAME);
-  sheet
-    .getRange(1, 1, 1, HEADERS.length)
-    .setValues([HEADERS])
-    .setFontWeight("bold");
-  sheet.setFrozenRows(1);
-  sheet.autoResizeColumns(1, HEADERS.length);
-  CacheService.getScriptCache().remove(CACHE_KEY);
 }
 
 /** Clears the cache so the website shows the latest rows immediately. */
@@ -147,23 +133,4 @@ function json_(obj) {
   return ContentService.createTextOutput(JSON.stringify(obj)).setMimeType(
     ContentService.MimeType.JSON
   );
-}
-
-/* --------------------------- Key generation ---------------------------- */
-
-/**
- * Generates and stores a strong secret, then shows it once so you can copy it
- * into .env (MENU_WEBHOOK_KEY) and Vercel. Re-run to rotate the key.
- */
-function setupKey() {
-  var key =
-    Utilities.getUuid().replace(/-/g, "") + Utilities.getUuid().replace(/-/g, "");
-  PropertiesService.getScriptProperties().setProperty("WEBHOOK_KEY", key);
-  try {
-    SpreadsheetApp.getUi().alert(
-      "Vegety API key (copy into MENU_WEBHOOK_KEY):\n\n" + key
-    );
-  } catch (e) {
-    Logger.log("MENU_WEBHOOK_KEY:\n" + key);
-  }
 }
