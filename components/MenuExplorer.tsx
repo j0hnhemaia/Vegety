@@ -81,15 +81,9 @@ export default function MenuExplorer({ items }: { items: MenuItem[] }) {
 
       {/* grid */}
       {filtered.length > 0 ? (
-        <div key={category} className="mt-8 grid gap-7 sm:grid-cols-2 lg:grid-cols-3">
-          {filtered.map((item, i) => (
-            <div
-              key={item.id}
-              className="animate-card-in"
-              style={{ animationDelay: `${Math.min(i, 8) * 45}ms` }}
-            >
-              <MenuCard item={item} />
-            </div>
+        <div key={category} className="animate-grid-in mt-8 grid gap-7 sm:grid-cols-2 lg:grid-cols-3">
+          {filtered.map((item) => (
+            <MenuCard key={item.id} item={item} />
           ))}
         </div>
       ) : (
