@@ -15,7 +15,7 @@ export default function NotFound() {
           <LeafFill className="absolute right-[22%] bottom-[18%] h-12 w-12 rotate-45 text-brand-300/40" />
         </div>
 
-        <section className="container-x relative flex min-h-[70vh] flex-col items-center justify-center pt-40 pb-24 text-center lg:pt-44">
+        <section className="container-x relative flex min-h-[70vh] flex-col items-center justify-center pb-24 pt-20 text-center md:pt-40 lg:pt-44">
           <p className="eyebrow">Error 404</p>
           <p className="mt-6 font-display text-7xl font-bold leading-none text-brand-500 sm:text-8xl">
             404

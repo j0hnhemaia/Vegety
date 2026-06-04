@@ -64,7 +64,7 @@ export function Hero() {
           <span className="block h-2 w-2 rounded-full bg-brand-500/60 animate-dot" style={{ animationDelay: "0.8s" }} />
         </span>
       </Parallax>
-      <div className="container-x relative z-10 grid items-center gap-12 pb-12 pt-40 lg:grid-cols-2 lg:pb-20 lg:pt-44">
+      <div className="container-x relative z-10 grid items-center gap-12 pb-12 pt-20 md:pt-40 lg:grid-cols-2 lg:pb-20 lg:pt-44">
         <div className="order-2 lg:order-1">
           <h1 className="font-display text-4xl font-bold leading-[1.1] text-ink sm:text-5xl lg:text-6xl">
             Healthy food to live a healthier life in the future
