@@ -44,14 +44,14 @@ export default async function MenuPage() {
           {/* extra leaves on phones only — the page is much taller and shows one
               card at a time, so denser drift keeps leaves behind the cards. */}
           {[
-            { top: "37%", size: "h-7 w-7", tone: "text-brand-400/40", dur: "30s", delay: "-12s", rot: "rotate-45" },
-            { top: "45%", size: "h-9 w-9", tone: "text-brand-300/65", dur: "34s", delay: "-28s", rot: "-rotate-12" },
-            { top: "53%", size: "h-6 w-6", tone: "text-brand-400/45", dur: "28s", delay: "-5s", rot: "rotate-90" },
-            { top: "61%", size: "h-8 w-8", tone: "text-brand-300/70", dur: "38s", delay: "-22s", rot: "-rotate-45" },
-            { top: "69%", size: "h-7 w-7", tone: "text-brand-400/40", dur: "32s", delay: "-9s", rot: "rotate-6" },
-            { top: "77%", size: "h-9 w-9", tone: "text-brand-300/65", dur: "35s", delay: "-30s", rot: "rotate-12" },
-            { top: "86%", size: "h-6 w-6", tone: "text-brand-400/45", dur: "29s", delay: "-15s", rot: "-rotate-6" },
-            { top: "95%", size: "h-8 w-8", tone: "text-brand-300/70", dur: "41s", delay: "-38s", rot: "rotate-45" },
+            { top: "37%", size: "h-10 w-10", tone: "text-brand-400/80", dur: "30s", delay: "-12s", rot: "rotate-45" },
+            { top: "45%", size: "h-12 w-12", tone: "text-brand-300/90", dur: "34s", delay: "-28s", rot: "-rotate-12" },
+            { top: "53%", size: "h-9 w-9", tone: "text-brand-400/85", dur: "28s", delay: "-5s", rot: "rotate-90" },
+            { top: "61%", size: "h-11 w-11", tone: "text-brand-300/90", dur: "38s", delay: "-22s", rot: "-rotate-45" },
+            { top: "69%", size: "h-10 w-10", tone: "text-brand-400/80", dur: "32s", delay: "-9s", rot: "rotate-6" },
+            { top: "77%", size: "h-12 w-12", tone: "text-brand-300/90", dur: "35s", delay: "-30s", rot: "rotate-12" },
+            { top: "86%", size: "h-9 w-9", tone: "text-brand-400/85", dur: "29s", delay: "-15s", rot: "-rotate-6" },
+            { top: "95%", size: "h-11 w-11", tone: "text-brand-300/90", dur: "41s", delay: "-38s", rot: "rotate-45" },
           ].map((l, i) => (
             <span
               key={`m-${i}`}

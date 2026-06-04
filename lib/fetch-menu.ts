@@ -41,19 +41,22 @@ function sanitize(items: unknown): MenuItem[] {
     .filter((m) => m.name.length > 0);
 }
 
-export async function fetchMenu(): Promise<MenuItem[]> {
-  if (!WEBHOOK_URL || !WEBHOOK_KEY) return [];
+// One attempt at the webhook, with a hard timeout so a hung request can't stall
+// the whole page render. Throws on any failure.
+async function fetchOnce(): Promise<MenuItem[]> {
+  const u = new URL(WEBHOOK_URL!);
+  u.searchParams.set("key", WEBHOOK_KEY!);
 
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), 20_000); // Apps Script is slow (~7-11s)
   try {
-    // Build the URL safely: overrides any pasted ?key, encodes correctly.
-    const u = new URL(WEBHOOK_URL);
-    u.searchParams.set("key", WEBHOOK_KEY);
     const res = await fetch(u.toString(), {
-      // Short cache + tag. Pages serve instantly from cache; the slow (~20s)
-      // webhook only runs in the background on revalidation, never blocking a
-      // user. The "menu" tag lets a sheet edit trigger an instant refresh.
+      // Short cache + tag. Pages serve instantly from cache; the slow webhook
+      // only runs in the background on revalidation, never blocking a user.
+      // The "menu" tag lets a sheet edit trigger an instant refresh.
       next: { revalidate: 10, tags: ["menu"] },
       redirect: "follow", // Apps Script 302-redirects to googleusercontent
+      signal: controller.signal,
     });
     if (!res.ok) throw new Error(`webhook ${res.status}`);
 
@@ -61,8 +64,29 @@ export async function fetchMenu(): Promise<MenuItem[]> {
     if (!data.ok) throw new Error(data.error || "webhook error");
 
     return sanitize(data.items);
-  } catch (err) {
-    console.error("fetchMenu failed:", err);
-    return [];
+  } finally {
+    clearTimeout(timer);
   }
+}
+
+export async function fetchMenu(): Promise<MenuItem[]> {
+  // No source configured → genuinely empty (page shows its empty state).
+  if (!WEBHOOK_URL || !WEBHOOK_KEY) return [];
+
+  // Retry transient failures (the webhook is slow and occasionally times out).
+  // CRITICAL: on total failure we THROW, not return []. Throwing makes the ISR
+  // regeneration fail, so Next keeps serving the LAST GOOD menu instead of
+  // caching an empty "No dishes found" page. A successful empty response (real
+  // empty sheet) still returns [] normally.
+  let lastErr: unknown;
+  for (let attempt = 1; attempt <= 3; attempt++) {
+    try {
+      return await fetchOnce();
+    } catch (err) {
+      lastErr = err;
+      console.error(`fetchMenu attempt ${attempt} failed:`, err);
+      if (attempt < 3) await new Promise((r) => setTimeout(r, attempt * 500));
+    }
+  }
+  throw new Error(`fetchMenu failed after retries: ${String(lastErr)}`);
 }
