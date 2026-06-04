@@ -7,7 +7,7 @@ export default function MenuCard({ item }: { item: MenuItem }) {
   return (
     <article
       aria-disabled={unavailable}
-      className={`group rounded-xl2 border border-white/90 bg-gradient-to-br from-white/95 to-white/88 p-3 shadow-[0_8px_32px_-8px_rgba(20,80,60,0.3)] ring-1 ring-inset ring-white/70 backdrop-blur-[40px] transition-shadow duration-200 hover:shadow-card lg:border-white lg:from-white lg:via-white/98 lg:to-white/94 lg:shadow-[0_22px_70px_-28px_rgba(20,80,60,0.5)] lg:ring-white/90 lg:backdrop-blur-[150px] lg:backdrop-saturate-150 ${
+      className={`group rounded-xl2 border border-white/90 bg-gradient-to-br from-white/98 to-white/95 p-3 shadow-[0_8px_32px_-8px_rgba(20,80,60,0.3)] ring-1 ring-inset ring-white/80 backdrop-blur-[72px] transition-shadow duration-200 hover:shadow-card lg:border-white lg:from-white lg:via-white lg:to-white/98 lg:shadow-[0_22px_70px_-28px_rgba(20,80,60,0.5)] lg:ring-white/95 lg:backdrop-blur-[180px] lg:backdrop-saturate-125 ${
         unavailable ? "opacity-75" : ""
       }`}
     >
