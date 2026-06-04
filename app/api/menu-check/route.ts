@@ -22,14 +22,6 @@ export async function GET() {
       }
     })(),
     urlEndsWithExec: url ? url.endsWith("/exec") : null,
-    // The deployment ID the SITE is calling (the /macros/s/<ID>/exec part).
-    // Not secret — the secret is the separate ?key value. Compare this against
-    // the Web app URL shown in Apps Script → Manage deployments.
-    deploymentId: (() => {
-      if (!url) return null;
-      const m = url.match(/\/s\/([^/]+)\/exec/);
-      return m ? m[1] : "NO_MATCH";
-    })(),
   };
 
   if (url && key) {
