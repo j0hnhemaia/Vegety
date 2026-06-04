@@ -80,6 +80,15 @@ body {
 }
 .page-transition { animation: pageFade 2s cubic-bezier(0.22, 1, 0.36, 1) both; }
 
+/* Frosted-glass card. Explicit -webkit- prefix so Safari (incl. macOS desktop)
+   actually applies the blur — Tailwind's backdrop-blur ships unprefixed only,
+   which Safari ignores. */
+.glass-card {
+  background-color: rgb(255 255 255 / 0.32);
+  -webkit-backdrop-filter: blur(24px);
+  backdrop-filter: blur(24px);
+}
+
 /* smooth fade-up for the menu grid when filters change */
 .animate-grid-in { animation: pageFade 0.5s cubic-bezier(0.22, 1, 0.36, 1) both; }
 
