@@ -36,6 +36,16 @@ export async function GET() {
         out.webhookOk = data.ok ?? null;
         out.webhookError = data.error ?? null;
         out.itemCount = Array.isArray(data.items) ? data.items.length : null;
+        // Diagnostic: show each item's name + the raw fields the webhook sends,
+        // so we can confirm whether `available`/out_of_menu is coming through.
+        if (Array.isArray(data.items)) {
+          const first = data.items[0] ?? {};
+          out.itemKeys = Object.keys(first); // e.g. does it include "available"?
+          out.items = data.items.map((it: Record<string, unknown>) => ({
+            name: it.name,
+            available: it.available,
+          }));
+        }
       } catch {
         out.parsedJson = false;
         out.bodyPreview = text.slice(0, 120);
