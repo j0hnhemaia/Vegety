@@ -62,7 +62,7 @@ export default async function MenuPage() {
             </span>
           ))}
         </div>
-        <section className="relative z-10 overflow-hidden pt-20 text-center md:pt-40 lg:pt-44">
+        <section className="relative z-10 overflow-hidden pt-40 text-center lg:pt-44">
           {/* subtle static depth */}
           <div className="pointer-events-none absolute inset-0" aria-hidden>
             <span className="animate-float absolute left-[8%] top-[38%]">
