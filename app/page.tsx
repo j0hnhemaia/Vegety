@@ -5,9 +5,9 @@ import {
 } from "@/components/landing";
 import { fetchMenu } from "@/lib/fetch-menu";
 
-// ISR: served static (instant), regenerated in the background every 60s so the
-// popular-menu teaser picks up sheet edits without per-request fetching.
-export const revalidate = 60;
+// No caching — render on every request so menu edits show immediately.
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
 
 export default async function Home() {
   const menu = await fetchMenu();

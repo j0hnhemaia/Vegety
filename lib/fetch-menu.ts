@@ -48,10 +48,9 @@ export async function fetchMenu(): Promise<MenuItem[]> {
     const u = new URL(WEBHOOK_URL);
     u.searchParams.set("key", WEBHOOK_KEY);
     const res = await fetch(u.toString(), {
-      // ISR: cache the response, tagged "menu". Sheet edits purge this cache
-      // instantly via /api/revalidate (called by the Apps Script onSheetChange
-      // trigger); `revalidate: 60` is a self-healing fallback if a ping is missed.
-      next: { revalidate: 60, tags: ["menu"] },
+      // No caching — read the sheet live on every request so edits show
+      // immediately on all devices (mobile was serving stale ISR pages).
+      cache: "no-store",
       redirect: "follow", // Apps Script 302-redirects to googleusercontent
     });
     if (!res.ok) throw new Error(`webhook ${res.status}`);
