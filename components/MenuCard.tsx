@@ -8,7 +8,7 @@ export default function MenuCard({ item }: { item: MenuItem }) {
     <article
       aria-disabled={unavailable}
       className={`group rounded-xl2 border border-white/90 bg-gradient-to-br from-white/95 to-white/88 p-3 shadow-[0_8px_32px_-8px_rgba(20,80,60,0.3)] ring-1 ring-inset ring-white/70 backdrop-blur-[40px] transition-shadow duration-200 hover:shadow-card lg:border-white lg:from-white lg:via-white lg:to-white lg:shadow-[0_22px_70px_-28px_rgba(20,80,60,0.5)] lg:ring-white/95 lg:backdrop-blur-[220px] lg:backdrop-saturate-75 ${
-        unavailable ? "opacity-50" : ""
+        unavailable ? "opacity-90" : ""
       }`}
     >
       <div className="relative aspect-[5/4] overflow-hidden rounded-2xl rounded-tl-none rounded-br-none">
