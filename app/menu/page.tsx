@@ -10,9 +10,9 @@ export const metadata: Metadata = {
   description: "Browse our full menu of fresh salads, bowls, breakfasts and drinks. Search and filter by category.",
 };
 
-// No caching — render on every request so menu edits show immediately.
-export const dynamic = "force-dynamic";
-export const revalidate = 0;
+// Short ISR: served from cache (instant), regenerated in the background every
+// 30s so menu edits appear quickly without ever blocking on the slow webhook.
+export const revalidate = 30;
 
 export default async function MenuPage() {
   const menu = await fetchMenu();
