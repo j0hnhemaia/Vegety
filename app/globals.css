@@ -53,17 +53,20 @@ body {
   from { opacity: 0; transform: translateX(16px); }
   to { opacity: 1; transform: translateX(0); }
 }
+/* Animate `left` (NOT transform). Transform-animated elements get their own GPU
+   layer that desktop backdrop-filter skips, so the glassy cards couldn't blur
+   them. Animating `left` keeps the leaves on the normal layer → the cards blur
+   them as they pass behind. */
 @keyframes crossDrift {
-  0% { transform: translateX(-10vw) translateY(0) rotate(0deg); opacity: 0; }
+  0% { left: -10vw; opacity: 0; }
   12% { opacity: 1; }
   88% { opacity: 1; }
-  100% { transform: translateX(110vw) translateY(-50px) rotate(70deg); opacity: 0; }
+  100% { left: 110vw; opacity: 0; }
 }
 
 .animate-cross {
   animation: crossDrift linear infinite backwards;
   animation-duration: var(--cd, 30s);
-  left: 0;
 }
 /* Phone screens are narrow, so the leaves cover less distance per second and
    look slow — shorten the duration (~45% faster) to match the desktop feel. */

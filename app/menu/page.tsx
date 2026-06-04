@@ -35,7 +35,7 @@ export default async function MenuPage() {
           ].map((l, i) => (
             <span
               key={i}
-              className={`animate-cross absolute ${l.size} ${l.tone} sm:blur-[3px]`}
+              className={`animate-cross absolute ${l.size} ${l.tone}`}
               style={{ top: l.top, ["--cd" as string]: l.dur, animationDelay: l.delay } as React.CSSProperties}
             >
               <LeafFill className={`h-full w-full ${l.rot}`} />
