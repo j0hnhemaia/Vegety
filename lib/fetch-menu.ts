@@ -51,7 +51,7 @@ export async function fetchMenu(): Promise<MenuItem[]> {
       // Short cache + tag. Pages serve instantly from cache; the slow (~20s)
       // webhook only runs in the background on revalidation, never blocking a
       // user. The "menu" tag lets a sheet edit trigger an instant refresh.
-      next: { revalidate: 30, tags: ["menu"] },
+      next: { revalidate: 10, tags: ["menu"] },
       redirect: "follow", // Apps Script 302-redirects to googleusercontent
     });
     if (!res.ok) throw new Error(`webhook ${res.status}`);

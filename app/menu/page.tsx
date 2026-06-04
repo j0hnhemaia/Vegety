@@ -11,8 +11,8 @@ export const metadata: Metadata = {
 };
 
 // Short ISR: served from cache (instant), regenerated in the background every
-// 30s so menu edits appear quickly without ever blocking on the slow webhook.
-export const revalidate = 30;
+// 10s so menu edits appear quickly without ever blocking on the slow webhook.
+export const revalidate = 10;
 
 export default async function MenuPage() {
   const menu = await fetchMenu();
