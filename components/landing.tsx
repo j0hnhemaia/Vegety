@@ -89,7 +89,15 @@ export function SpecialDish({ items }: { items: MenuItem[] }) {
       <div className="container-x text-center">
         <h2 className="font-display text-3xl font-bold text-ink sm:text-4xl">Our Special Dish</h2>
         <p className="mt-3 text-muted">Made with premium ingredients.</p>
-        <div className="mt-12 grid gap-8 sm:grid-cols-3">
+        <div
+          className={`mx-auto mt-12 grid gap-8 ${
+            items.length === 1
+              ? "max-w-xs sm:grid-cols-1"
+              : items.length === 2
+                ? "max-w-2xl sm:grid-cols-2"
+                : "sm:grid-cols-3"
+          }`}
+        >
           {items.map((d, i) => (
             <div key={d.id} className={`rounded-xl2 px-7 pt-7 text-center ${i === 1 ? "bg-white pb-12 shadow-card" : "pb-7 shadow-[0_12px_30px_-20px_rgba(27,67,50,0.3)]"}`}>
               <div className="relative mx-auto h-36 w-36 overflow-hidden rounded-full bg-brand-50 shadow-sm">
@@ -138,7 +146,15 @@ export function PopularMenu({ items }: { items: MenuItem[] }) {
       <div className="container-x text-center">
         <h2 className="font-display text-3xl font-bold text-ink sm:text-4xl">Our Popular Menu</h2>
         <p className="mt-3 text-muted">Made with premium ingredients.</p>
-        <div className="mt-14 grid items-start gap-7 text-left sm:grid-cols-2 lg:grid-cols-3">
+        <div
+          className={`mx-auto mt-14 grid items-start gap-7 text-left ${
+            items.length === 1
+              ? "max-w-sm"
+              : items.length === 2
+                ? "max-w-2xl sm:grid-cols-2"
+                : "sm:grid-cols-2 lg:grid-cols-3"
+          }`}
+        >
           {items.map((item, i) => (
             <article
               key={item.id}
