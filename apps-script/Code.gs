@@ -16,7 +16,8 @@
  *
  * SETUP
  *  1. Sheet → Extensions → Apps Script → paste this file → Save.
- *  2. Sheet tab named "Menu", row 1 headers: name | category | price | image | description
+ *  2. Sheet tab named "Menu", row 1 headers:
+ *     name | category | price | image | description | out_of_menu | special | popular
  *     (or import apps-script/menu-seed.csv).
  *  3. Set the secret: Project Settings (gear) → Script properties →
  *     add property  WEBHOOK_KEY = <a long random string>. Use the SAME value as
@@ -86,9 +87,12 @@ function readMenu_() {
   var rows = sheet.getDataRange().getValues();
   if (rows.length < 2) return [];
 
-  // Row 0 = headers: name | category | price | image | description | out_of_menu
+  // Row 0 = headers:
+  //   name | category | price | image | description | out_of_menu | special | popular
   // (id is generated here from the row number)
   // out_of_menu: leave empty for available; put "yes" to mark Unavailable.
+  // special:     put "yes" to feature in the home "Our Special Dish" section (max 3).
+  // popular:     put "yes" to feature in the home "Our Popular Menu" section (max 3).
   return rows
     .slice(1)
     .filter(function (r) {
@@ -103,6 +107,8 @@ function readMenu_() {
         image: String(r[3] || "").trim(),
         description: String(r[4] || "").trim(),
         available: String(r[5] || "").trim().toLowerCase() !== "yes",
+        special: String(r[6] || "").trim().toLowerCase() === "yes",
+        popular: String(r[7] || "").trim().toLowerCase() === "yes",
       };
     });
 }

@@ -81,26 +81,22 @@ export function Hero() {
   );
 }
 
-const DISHES = [
-  { name: "Green Salad", img: "photo-1540420773420-3366772f4999", desc: "A green salad filled with cabbage, mustard greens, and added chicken pieces for a more delicious." },
-  { name: "Beef Salad", img: "photo-1490474418585-ba9bad8fd0ea", desc: "A salad combined with a delicious cut of bacon and mixed with tasty and fresh sesame oil." },
-  { name: "Nut Salad", img: "photo-1505253716362-afaea1d3d1af", desc: "The salad is mixed with various types of savory nuts so that it adds a delicious and addictive taste." },
-];
-
-export function SpecialDish() {
+export function SpecialDish({ items }: { items: MenuItem[] }) {
+  // Driven by the sheet's "special" column. No flagged dishes → hide the section.
+  if (items.length === 0) return null;
   return (
     <section className="py-20">
       <div className="container-x text-center">
         <h2 className="font-display text-3xl font-bold text-ink sm:text-4xl">Our Special Dish</h2>
         <p className="mt-3 text-muted">Made with premium ingredients.</p>
         <div className="mt-12 grid gap-8 sm:grid-cols-3">
-          {DISHES.map((d, i) => (
-            <div key={d.name} className={`rounded-xl2 px-7 pt-7 text-center ${i === 1 ? "bg-white pb-12 shadow-card" : "pb-7 shadow-[0_12px_30px_-20px_rgba(27,67,50,0.3)]"}`}>
+          {items.map((d, i) => (
+            <div key={d.id} className={`rounded-xl2 px-7 pt-7 text-center ${i === 1 ? "bg-white pb-12 shadow-card" : "pb-7 shadow-[0_12px_30px_-20px_rgba(27,67,50,0.3)]"}`}>
               <div className="relative mx-auto h-36 w-36 overflow-hidden rounded-full bg-brand-50 shadow-sm">
-                <Image src={food(d.img, 360)} alt={d.name} fill sizes="160px" className="object-cover" />
+                <Image src={d.image} alt={d.name} fill sizes="160px" className="object-cover" />
               </div>
               <h3 className="mt-5 font-display text-lg font-semibold text-ink">{d.name}</h3>
-              <p className="mt-3 text-sm leading-relaxed text-muted">{d.desc}</p>
+              <p className="mt-3 text-sm leading-relaxed text-muted">{d.description}</p>
             </div>
           ))}
         </div>
@@ -135,6 +131,8 @@ export function FreshVeg() {
 }
 
 export function PopularMenu({ items }: { items: MenuItem[] }) {
+  // Driven by the sheet's "popular" column. No flagged dishes → hide the section.
+  if (items.length === 0) return null;
   return (
     <section className="bg-brand-50/40 py-20">
       <div className="container-x text-center">

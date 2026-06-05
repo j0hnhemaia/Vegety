@@ -11,14 +11,17 @@ export const revalidate = 10;
 
 export default async function Home() {
   const menu = await fetchMenu();
-  const popular = menu.slice(0, 3);
+  // Sections are sheet-driven: flag dishes with "yes" in the special / popular
+  // columns. Max 3 each; when none are flagged the component hides the section.
+  const special = menu.filter((m) => m.special).slice(0, 3);
+  const popular = menu.filter((m) => m.popular).slice(0, 3);
 
   return (
     <>
       <Navbar />
       <main>
         <Hero />
-        <SpecialDish />
+        <SpecialDish items={special} />
         <FreshVeg />
         <PopularMenu items={popular} />
         <Testimonials />

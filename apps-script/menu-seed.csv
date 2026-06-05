@@ -1,13 +1,13 @@
-name,category,price,image,description
-Chicken Salad with Avocado Toast,Salad,10.50,https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=600&q=70,"Grilled chicken, ripe avocado and crisp greens on toasted sourdough."
-Tuna Salad with Spicy Cucumber,Salad,13.00,https://images.unsplash.com/photo-1467003909585-2f8a72700288?auto=format&fit=crop&w=600&q=70,"Seared tuna, chilli cucumber and a sesame-soy dressing."
-Salted Egg Salad with Curry Sauce,Salad,12.80,https://images.unsplash.com/photo-1490645935967-10de6ba17061?auto=format&fit=crop&w=600&q=70,"Soft salted egg, mixed leaves and a mild curry drizzle."
-Green Goddess Bowl,Bowl,11.90,https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=600&q=70,"Quinoa, broccoli, edamame and a herby green dressing."
-Salmon Poke Bowl,Bowl,14.50,https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=600&q=70,"Fresh salmon, avocado, rice and pickled vegetables."
-Roasted Veg Buddha Bowl,Bowl,10.90,https://images.unsplash.com/photo-1543339308-43e59d6b73a6?auto=format&fit=crop&w=600&q=70,Roasted seasonal vegetables over wholegrain rice.
-Berry Spinach Smoothie,Drinks,5.50,https://images.unsplash.com/photo-1502741224143-90386d7f8c82?auto=format&fit=crop&w=600&q=70,Mixed berries, spinach and banana blended with oat milk.
-Green Detox Juice,Drinks,5.00,https://images.unsplash.com/photo-1610970881699-44a5587cabec?auto=format&fit=crop&w=600&q=70,"Cucumber, apple, celery and lime cold-pressed juice."
-Avocado Toast Plate,Breakfast,8.50,https://images.unsplash.com/photo-1525351484163-7529414344d8?auto=format&fit=crop&w=600&q=70,"Smashed avocado, chilli flakes and poached egg on rye."
-Overnight Oats & Berries,Breakfast,6.90,https://images.unsplash.com/photo-1517673400267-0251440c45dc?auto=format&fit=crop&w=600&q=70,Creamy oats soaked in almond milk with fresh berries.
-Beef Salad,Salad,13.50,https://images.unsplash.com/photo-1490474418585-ba9bad8fd0ea?auto=format&fit=crop&w=600&q=70,Lean beef strips with tangy sesame oil and fresh leaves.
-Nut & Egg Salad,Salad,11.20,https://images.unsplash.com/photo-1505253716362-afaea1d3d1af?auto=format&fit=crop&w=600&q=70,"Savoury nuts, soft egg and crunchy greens."
+name,category,price,image,description,out_of_menu,special,popular
+Chicken Salad with Avocado Toast,Salad,10.50,https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=600&q=70,"Grilled chicken, ripe avocado and crisp greens on toasted sourdough.",,yes,yes
+Tuna Salad with Spicy Cucumber,Salad,13.00,https://images.unsplash.com/photo-1467003909585-2f8a72700288?auto=format&fit=crop&w=600&q=70,"Seared tuna, chilli cucumber and a sesame-soy dressing.",,,yes
+Salted Egg Salad with Curry Sauce,Salad,12.80,https://images.unsplash.com/photo-1490645935967-10de6ba17061?auto=format&fit=crop&w=600&q=70,"Soft salted egg, mixed leaves and a mild curry drizzle.",,yes,
+Green Goddess Bowl,Bowl,11.90,https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=600&q=70,"Quinoa, broccoli, edamame and a herby green dressing.",,,yes
+Salmon Poke Bowl,Bowl,14.50,https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=600&q=70,"Fresh salmon, avocado, rice and pickled vegetables.",,yes,
+Roasted Veg Buddha Bowl,Bowl,10.90,https://images.unsplash.com/photo-1543339308-43e59d6b73a6?auto=format&fit=crop&w=600&q=70,Roasted seasonal vegetables over wholegrain rice.,,,
+Berry Spinach Smoothie,Drinks,5.50,https://images.unsplash.com/photo-1502741224143-90386d7f8c82?auto=format&fit=crop&w=600&q=70,Mixed berries, spinach and banana blended with oat milk.,,,
+Green Detox Juice,Drinks,5.00,https://images.unsplash.com/photo-1610970881699-44a5587cabec?auto=format&fit=crop&w=600&q=70,"Cucumber, apple, celery and lime cold-pressed juice.",,,
+Avocado Toast Plate,Breakfast,8.50,https://images.unsplash.com/photo-1525351484163-7529414344d8?auto=format&fit=crop&w=600&q=70,"Smashed avocado, chilli flakes and poached egg on rye.",,,
+Overnight Oats & Berries,Breakfast,6.90,https://images.unsplash.com/photo-1517673400267-0251440c45dc?auto=format&fit=crop&w=600&q=70,Creamy oats soaked in almond milk with fresh berries.,,,
+Beef Salad,Salad,13.50,https://images.unsplash.com/photo-1490474418585-ba9bad8fd0ea?auto=format&fit=crop&w=600&q=70,Lean beef strips with tangy sesame oil and fresh leaves.,,,
+Nut & Egg Salad,Salad,11.20,https://images.unsplash.com/photo-1505253716362-afaea1d3d1af?auto=format&fit=crop&w=600&q=70,"Savoury nuts, soft egg and crunchy greens.",,,
