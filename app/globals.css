@@ -53,18 +53,35 @@ body {
   from { opacity: 0; transform: translateX(16px); }
   to { opacity: 1; transform: translateX(0); }
 }
+/* Animate ONLY `left` — no transform, no opacity. Animating transform OR opacity
+   promotes the leaf to its own GPU layer, which desktop backdrop-filter cannot
+   sample, so the glass cards couldn't blur it (mobile composites differently, so
+   it worked there). Pure `left` keeps the leaf on the page layer → the cards
+   blur it as it passes behind, on every browser. The leaf slides in/out past the
+   screen edges (-10vw → 110vw), so no opacity fade is needed. */
 @keyframes crossDrift {
-  0% { transform: translateX(-10vw) translateY(0) rotate(0deg); opacity: 0; }
-  12% { opacity: 1; }
-  88% { opacity: 1; }
-  100% { transform: translateX(110vw) translateY(-50px) rotate(70deg); opacity: 0; }
+  0% { left: -10vw; }
+  100% { left: 110vw; }
 }
 
-.animate-cross { animation: crossDrift linear infinite backwards; left: 0; }
+.animate-cross {
+  animation: crossDrift linear infinite backwards;
+  animation-duration: var(--cd, 30s);
+}
+/* Phone screens are narrow, so the leaves cover less distance per second and
+   look slow — shorten the duration (~45% faster) to match the desktop feel. */
+@media (max-width: 640px) {
+  .animate-cross { animation-duration: calc(var(--cd, 30s) * 0.55); }
+}
 
+/* Opacity-only — NO transform. A transform here would persist (fill: both) and
+   make this element a containing block, which walls off the card's
+   backdrop-filter from the leaves behind it (they live outside this wrapper).
+   Fading opacity only keeps the backdrop intact so the glass cards blur the
+   leaves as they pass. */
 @keyframes pageFade {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 .page-transition { animation: pageFade 2s cubic-bezier(0.22, 1, 0.36, 1) both; }
 
@@ -84,6 +101,15 @@ body {
 .parallax {
   transform: translate3d(0, calc(var(--p, 0) * var(--spd, 40) * 1px), 0);
   will-change: transform;
+}
+
+/* Phones: damp the drift. The amplitudes in --spd are tuned for a wide screen;
+   the same pixel distance covers a much larger share of a small viewport, so
+   at full strength the leaves and the dish decorations read as frantic. */
+@media (max-width: 767px) {
+  .parallax {
+    transform: translate3d(0, calc(var(--p, 0) * var(--spd, 40) * 0.45px), 0);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
