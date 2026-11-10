@@ -6,7 +6,7 @@ import { LeafFill } from "@/components/icons";
 import { fetchMenu } from "@/lib/fetch-menu";
 
 export const metadata: Metadata = {
-  title: "Menu — Vegety",
+  title: "Menu - Vegety",
   description: "Browse our full menu of fresh salads, bowls, breakfasts and drinks. Search and filter by category.",
 };
 
@@ -21,7 +21,7 @@ export default async function MenuPage() {
     <>
       <Navbar />
       <main className="relative overflow-hidden bg-gradient-to-b from-brand-50 via-brand-50/40 to-white">
-        {/* leaves drifting across the page — scattered heights/sizes/speeds */}
+        {/* leaves drifting across the page - scattered heights/sizes/speeds */}
         <div className="pointer-events-none absolute inset-0" aria-hidden>
           {[
             { top: "33%", size: "h-11 w-11", tone: "text-brand-400/80", dur: "27s", delay: "-3s", rot: "rotate-12" },
@@ -41,7 +41,7 @@ export default async function MenuPage() {
               <LeafFill className={`h-full w-full ${l.rot}`} />
             </span>
           ))}
-          {/* extra leaves on phones only — the page is much taller and shows one
+          {/* extra leaves on phones only - the page is much taller and shows one
               card at a time, so denser drift keeps leaves behind the cards. */}
           {[
             { top: "37%", size: "h-10 w-10", tone: "text-brand-400/80", dur: "30s", delay: "-12s", rot: "rotate-45" },
@@ -79,7 +79,7 @@ export default async function MenuPage() {
               Fresh dishes, made daily
             </h1>
             <p className="mx-auto mt-5 max-w-md text-base leading-relaxed text-muted">
-              Explore every dish on our menu — search by name or ingredient, or filter by category.
+              Explore every dish on our menu - search by name or ingredient, or filter by category.
             </p>
           </div>
         </section>

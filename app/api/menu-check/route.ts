@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 
 // TEMPORARY diagnostic. Hit /api/menu-check on the live site to see exactly what
-// the server sees. Returns no secret — only booleans, status, and item count.
+// the server sees. Returns no secret - only booleans, status, and item count.
 // Delete this route once the menu works.
 export const dynamic = "force-dynamic";
 

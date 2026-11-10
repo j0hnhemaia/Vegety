@@ -1,10 +1,10 @@
 /**
- * Vegety — Menu Webhook (Google Apps Script Web App)
+ * Vegety - Menu Webhook (Google Apps Script Web App)
  * ---------------------------------------------------
  * Serves the "Menu" sheet as JSON, secured by a shared secret.
  *
  * IMPORTANT: you do NOT redeploy when you change the menu data. The web app
- * reads the sheet LIVE on every request — edit a row, refresh the site, done.
+ * reads the sheet LIVE on every request - edit a row, refresh the site, done.
  * Redeploy (New version) is only needed if you change THIS code.
  *
  * SECURITY MODEL
@@ -153,6 +153,6 @@ function onSheetChange(e) {
       muteHttpExceptions: true,
     });
   } catch (err) {
-    // Best-effort only — the site's time-based ISR fallback self-heals.
+    // Best-effort only - the site's time-based ISR fallback self-heals.
   }
 }

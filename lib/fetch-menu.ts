@@ -3,18 +3,18 @@ import type { MenuItem } from "./types";
 
 // ---------------------------------------------------------------------------
 // Server-only menu fetch. Imports "server-only" so this module can NEVER be
-// bundled into client code — the secret cannot leak to the browser.
+// bundled into client code - the secret cannot leak to the browser.
 //
 // Env (server-only, NOT prefixed with NEXT_PUBLIC_):
-//   MENU_WEBHOOK_URL  – the Apps Script /exec web app URL
-//   MENU_WEBHOOK_KEY  – the shared secret (matches Script Property WEBHOOK_KEY)
+//   MENU_WEBHOOK_URL  - the Apps Script /exec web app URL
+//   MENU_WEBHOOK_KEY  - the shared secret (matches Script Property WEBHOOK_KEY)
 //
 // The key is sent as a query param over HTTPS (the whole URL is encrypted in
 // transit). Apps Script /exec reliably handles GET; its POST endpoint 405s for
 // server-to-server requests, so we use GET. The request runs server-side on
 // Vercel, so the key never reaches the browser.
 //
-// The menu reflects the sheet only — if env is missing or the sheet is empty,
+// The menu reflects the sheet only - if env is missing or the sheet is empty,
 // we return an empty list (the page shows its empty state), never placeholder data.
 // ---------------------------------------------------------------------------
 

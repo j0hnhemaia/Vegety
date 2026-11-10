@@ -18,15 +18,15 @@ Tab named `Menu`, row 1 headers in this exact order:
 | name | category | price | image | description |
 |------|----------|-------|-------|-------------|
 
-(No `id` or `rating` columns — `id` is generated automatically from the row number.)
+(No `id` or `rating` columns - `id` is generated automatically from the row number.)
 
 ## Setup
 1. Google Sheet → **Extensions → Apps Script**. Paste `Code.gs`. **Save**.
-2. **Reload the spreadsheet** — a **🌿 Vegety** menu appears in the menu bar
+2. **Reload the spreadsheet** - a **🌿 Vegety** menu appears in the menu bar
    (next to Extensions / Help).
-3. **🌿 Vegety → Set up headers** — creates the `Menu` tab + bold frozen header row.
+3. **🌿 Vegety → Set up headers** - creates the `Menu` tab + bold frozen header row.
    (Or import `menu-seed.csv` for the 12 demo rows.)
-4. **🌿 Vegety → Generate API key** — copy the key from the popup.
+4. **🌿 Vegety → Generate API key** - copy the key from the popup.
 5. **Deploy → New deployment → Web app**
    - Execute as: **Me**
    - Who has access: **Anyone** (access is gated by the key, not Google login)
@@ -41,7 +41,7 @@ Tab named `Menu`, row 1 headers in this exact order:
 Until these are set, the site automatically falls back to mock data.
 
 ## Updating the menu (no redeploy)
-The web app reads the sheet **live** on every request, so just edit rows — you
+The web app reads the sheet **live** on every request, so just edit rows - you
 only redeploy if you change `Code.gs` itself.
 
 The Next.js site caches the menu (ISR) for speed. To push edits to the site
@@ -61,8 +61,8 @@ revalidation trigger below.
    - Function: **`onSheetChange`**
    - Event source: **From spreadsheet**
    - Event type: **On change**
-   - **Save** and authorize when prompted (an *installable* trigger is required
-     — simple triggers can't make external requests).
+   - **Save** and authorize when prompted (an *installable* trigger is required -
+     simple triggers can't make external requests).
 
 Now any sheet change pings `/api/revalidate`, which purges the site's `menu`
 cache so the edit appears immediately. If a ping is ever missed, the site's

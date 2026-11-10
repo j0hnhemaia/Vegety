@@ -2,8 +2,8 @@ import Link from "next/link";
 import { Leaf, Facebook, Instagram, Twitter } from "./icons";
 
 const HOURS = [
-  { day: "Mon – Fri", time: "8:00 – 18:00" },
-  { day: "Sat – Sun", time: "9:00 – 17:00" },
+  { day: "Mon - Fri", time: "8:00 - 18:00" },
+  { day: "Sat - Sun", time: "9:00 - 17:00" },
 ];
 
 export default function Footer() {

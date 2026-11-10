@@ -1,11 +1,11 @@
-# Vegety — Healthy Food Landing + Dynamic Menu
+# Vegety - Healthy Food Landing + Dynamic Menu
 
 Next.js 15 (App Router) + Tailwind. Pure frontend, no backend. Built for UK cafés &
 restaurants, deployable on the Vercel free plan.
 
 ## Pages
-- `/` — landing page (hero, special dish, fresh veg, popular menu, chefs, testimonials, newsletter, footer)
-- `/menu` — dynamic menu with live **search** + **category filter**
+- `/` - landing page (hero, special dish, fresh veg, popular menu, chefs, testimonials, newsletter, footer)
+- `/menu` - dynamic menu with live **search** + **category filter**
 
 ## Data source
 Menu comes from a Google Sheet via a **secured Apps Script webhook**. The secret is
@@ -21,7 +21,7 @@ Tab named `Menu`, row 1 headers in this exact order:
 (`id` is generated automatically; there are no `id`/`rating` columns.)
 
 ### Go live
-1. Deploy the webhook — see [`apps-script/README.md`](apps-script/README.md)
+1. Deploy the webhook - see [`apps-script/README.md`](apps-script/README.md)
    (paste `apps-script/Code.gs`, run `setupKey()`, deploy as a Web App).
 2. Copy `.env.example` to `.env.local` and fill in:
    ```
