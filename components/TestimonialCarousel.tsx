@@ -10,7 +10,7 @@ const REVIEWS: Review[] = [
     initials: "OB",
     name: "Olivia Bennett",
     quote:
-      "Honestly the freshest meals I've had delivered — vibrant flavours, generous portions and you can taste how fresh the ingredients are. My new weekday go-to.",
+      "Honestly the freshest meals I've had delivered - vibrant flavours, generous portions and you can taste how fresh the ingredients are. My new weekday go-to.",
   },
   {
     initials: "JW",
@@ -22,7 +22,7 @@ const REVIEWS: Review[] = [
     initials: "PS",
     name: "Priya Sharma",
     quote:
-      "Eating well used to feel like a chore. With Vegety it's the part of my day I look forward to — proper food that happens to be healthy.",
+      "Eating well used to feel like a chore. With Vegety it's the part of my day I look forward to - proper food that happens to be healthy.",
   },
 ];
 

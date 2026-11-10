@@ -22,7 +22,7 @@ import { useEffect, useRef } from "react";
 // altering how the effect already looks on a wide screen.
 const P_LIMIT = 0.9;
 
-// Ignore innerHeight changes smaller than this — they're browser chrome
+// Ignore innerHeight changes smaller than this - they're browser chrome
 // showing/hiding, not a real resize.
 const VH_EPSILON = 120;
 

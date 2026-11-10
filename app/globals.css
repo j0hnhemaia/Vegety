@@ -18,7 +18,7 @@ body {
   .container-x {
     @apply mx-auto w-full max-w-6xl px-5 sm:px-8;
   }
-  /* primary CTA — near-black pill (cohesive charcoal + green scheme) */
+  /* primary CTA - near-black pill (cohesive charcoal + green scheme) */
   .btn-primary {
     @apply inline-flex items-center gap-2 rounded-full bg-cta px-7 py-3 text-sm font-semibold text-white transition-colors duration-200 hover:bg-brand-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-600;
   }
@@ -53,7 +53,7 @@ body {
   from { opacity: 0; transform: translateX(16px); }
   to { opacity: 1; transform: translateX(0); }
 }
-/* Animate ONLY `left` — no transform, no opacity. Animating transform OR opacity
+/* Animate ONLY `left` - no transform, no opacity. Animating transform OR opacity
    promotes the leaf to its own GPU layer, which desktop backdrop-filter cannot
    sample, so the glass cards couldn't blur it (mobile composites differently, so
    it worked there). Pure `left` keeps the leaf on the page layer → the cards
@@ -69,12 +69,12 @@ body {
   animation-duration: var(--cd, 30s);
 }
 /* Phone screens are narrow, so the leaves cover less distance per second and
-   look slow — shorten the duration (~45% faster) to match the desktop feel. */
+   look slow - shorten the duration (~45% faster) to match the desktop feel. */
 @media (max-width: 640px) {
   .animate-cross { animation-duration: calc(var(--cd, 30s) * 0.55); }
 }
 
-/* Opacity-only — NO transform. A transform here would persist (fill: both) and
+/* Opacity-only - NO transform. A transform here would persist (fill: both) and
    make this element a containing block, which walls off the card's
    backdrop-filter from the leaves behind it (they live outside this wrapper).
    Fading opacity only keeps the backdrop intact so the glass cards blur the

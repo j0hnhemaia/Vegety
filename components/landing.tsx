@@ -40,7 +40,7 @@ function OrbitFrame({
 export function Hero() {
   return (
     <section className="relative overflow-hidden bg-gradient-to-b from-brand-50 to-white">
-      {/* moving background decoration — drifts on scroll (local parallax) + idle float */}
+      {/* moving background decoration - drifts on scroll (local parallax) + idle float */}
       <Parallax className="pointer-events-none absolute inset-0">
         <span className="parallax absolute left-[6%] top-[22%]" style={spd(50)}>
           <LeafFill className="h-10 w-10 text-brand-300/70 animate-float" />

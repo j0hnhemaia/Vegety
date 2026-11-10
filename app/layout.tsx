@@ -13,11 +13,11 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: "Vegety — Healthy food to live a healthier life",
+  title: "Vegety - Healthy food to live a healthier life",
   description:
-    "Fresh, healthy meals made with premium ingredients. Browse our menu of salads, bowls and wholesome dishes — crafted by the best chefs.",
+    "Fresh, healthy meals made with premium ingredients. Browse our menu of salads, bowls and wholesome dishes - crafted by the best chefs.",
   openGraph: {
-    title: "Vegety — Healthy food for a healthier life",
+    title: "Vegety - Healthy food for a healthier life",
     description: "Fresh, healthy meals made with premium ingredients.",
     type: "website",
   },
